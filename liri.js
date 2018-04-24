@@ -36,18 +36,19 @@ var command=process.argv[2];
     //         provide info about the song. Artist(s) * The song's name  * A preview link of the song from Spotify * The album that the song is from */
 //* If no song is provided then your program will default to "The Sign" by Ace of Base.
     if (command == 'spotify-this-song'){
-        var params = {songArtist: "Michael Jackson", songName: "Thriller", };
-        var fullSong = params.songArtist + params.songName
-        console.log(params);
+        var params = {songName: "Thriller"};
+        var fullSong = params.songName;
+        //console.log(params);
         console.log(fullSong);
-        spotify.search({ type: 'track', query: "thriller", limit: 1,}, function(err, data) {
+        spotify.search({ type: 'track', query: params.songName, limit: 1,}, function(err, data) {
             if (err) {
                 return console.log('Error occurred: ' + err);
               }
-              console.log(data.tracks); 
+              //console.log(data.tracks); 
               let albumName= data.tracks.items[0].name;
               console.log(albumName)
-              let albumName= data.tracks.items[0].preview_url;
+              let linkURL= data.tracks.items[0].preview_url;
+              console.log(linkURL);
             });
         
      }
